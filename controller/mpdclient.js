@@ -119,25 +119,6 @@ function sendchangeVolume(volref, callback) {
     });
 }
 
-function sendElapsedRequest(callback) {
-    sendCommands(cmd("status", []), 
-        function(err, msg) {
-            if (err) {
-                callback(err);
-            } else {
-                var data = mpd.parseKeyValueMessage(msg);
-                var elapsed = { elapsed: 0 };
-                for (const [key, value] of Object.entries(data)) {
-                    if(key.toLowerCase() === 'elapsed') {
-                        elapsed.elapsed = value;
-                        break;
-                    }
-                }
-                callback(null, elapsed);
-            }
-    });
-}
-
 function sendVolumeRequest(callback) {
     sendCommands(cmd("status", []), 
         function(err, msg) {
@@ -188,10 +169,6 @@ var self = module.exports = {
 
     getMpdStatus: function getMpdStatus(callback) {
         sendStatusRequest(callback);
-    },
-
-    getElapsed: function getElapsed(callback) {
-        sendElapsedRequest(callback);
     },
 
     getVolume: function getVolume(callback) {

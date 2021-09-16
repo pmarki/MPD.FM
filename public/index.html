@@ -18,16 +18,12 @@
     </head>
     <body>
         <div id="app">
-            <!--[if lte IE 9]>
-                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-            <![endif]-->
-
             <div class="error-message" v-if="errorState.wssDisconnect || errorState.mpdServerDisconnect">
                 <div class="pure-g error-content">
-                        <div class="pure-u-1 l-box">
-                            <p v-if="errorState.wssDisconnect" class="error-heading">Can't reach server - trying to reconnect...</p>
-                            <p v-else-if="errorState.mpdServerDisconnect" class="error-heading">The server can't reach MPD - trying to reconnect...</p>
-                        </div>
+                    <div class="pure-u-1 l-box">
+                        <p v-if="errorState.wssDisconnect" class="error-heading">Can't reach server - trying to reconnect...</p>
+                        <p v-else-if="errorState.mpdServerDisconnect" class="error-heading">The server can't reach MPD - trying to reconnect...</p>
+                    </div>
                 </div>
             </div>
             
@@ -63,44 +59,44 @@
                     <div class="pure-u-3-4 l-box">
                     </div>
                 </div>
-
             </div>
 
             <div class="player">
                 <div class="pure-g player-header">
-        	  	   <div class="slidecontainer">
- 										<input type="range" min="0" max="100" v-model="sliderValue" @input="changeVolume" class="slider" id="myRange">
- 							   </div>
-								</div>
+        	  	   <!--<div class="slidecontainer">
+                       <input type="range" min="0" max="100" v-model="sliderValue" @input="changeVolume" class="slider" id="myRange">
+                   </div>-->
+                </div>
                 <div class="pure-g player-content">
-                	
-                        <div class="pure-u-1-4 l-box" v-on:click="onPlayButton">
-                            <div class="station-logo">
 
-                                <img class="pure-img active-station" v-bind:src="!currentStation ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' : currentStation.logo" v-bind:alt="!currentStation ? '' : currentStation.station">
+                    <div class="pure-u-1-4 l-box" v-on:click="onPlayButton">
+                        <div class="station-logo">
+                            <img class="pure-img active-station"
+                                 v-bind:src="!currentStation ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' : currentStation.logo"
+                                 v-bind:alt="!currentStation ? '' : currentStation.station">
 
-                                <img v-if="status==='playing'" class="pure-img play-button" src="img/pause.svg" alt="Pause">
-                                <img v-else-if="status==='stopped' || status==='paused'" class="pure-img play-button" src="img/play.svg" alt="Play">
-                                <div v-else class="play-button spinner-frame" style="width: 100%">
-                                    <div class="spinner">
-                                        <div class="bounce1"></div>
-                                        <div class="bounce2"></div>
-                                        <div class="bounce3"></div>
-                                    </div>
+                            <img v-if="status==='playing'" class="pure-img play-button" src="img/pause.svg" alt="Pause">
+                            <img v-else-if="status==='stopped' || status==='paused'" class="pure-img play-button" src="img/play.svg" alt="Play">
+                            <div v-else class="play-button spinner-frame" style="width: 100%">
+                                <div class="spinner">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="pure-u-3-4 l-box station-text">
-                            <div class="station-text-inside">
-                                <p class="station-heading">{{ elapsed }}</p>
-                                <p>{{ song }}</p>
-                                <p>Volume: {{ storedsliderValue }}</p>
-                           	</div>
+                    </div>
+                    <div class="pure-u-3-4 l-box station-text">
+                        <div class="station-text-inside">
+                            <p class="station-heading">{{ currentStation }}</p>
+                            <p>{{ song }}</p>
+                            <!--<p>Volume: {{ storedsliderValue }}</p>-->
                         </div>
+                    </div>
                 </div>
               
             </div>
-	          <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue"></script>
             <script src="js/plugins.js"></script>
             <script src="js/vendor/ReconnectingWebSocket.js"></script>
             <script src="js/main.js"></script>

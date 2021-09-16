@@ -83,16 +83,6 @@ module.exports = {
                         });
                         break;
 
-                    case "REQUEST_ELAPSED":
-                        mpdClient.getElapsed(function(err, elapsed) {
-                            if(err) {
-                                sendWSSMessage(ws, 'MPD_OFFLINE', null);
-                            } else {
-                                sendWSSMessage(ws, 'ELAPSED', elapsed);
-                            }
-                        });
-                        break;
-
                     case "CHANGEVOL":
                         mpdClient.changeVolume(msg.data.volref, function(err) {
                             if(err) {
